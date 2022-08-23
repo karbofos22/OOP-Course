@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="HomeWork_1.DeliveryService">
+    <Position X="4.25" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>CAABAAAAAAAAAAAAAAAAAAAAACEAAJABAAAAAAAAAAA=</HashCode>
+      <FileName>DeliveryService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HomeWork_1.LogisticsOperator">
+    <Position X="5.5" Y="4.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAACAAAAAAIAAAAAAAAAAACAIAQAAAAAAg=</HashCode>
+      <FileName>LogisticsOperator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HomeWork_1.Driver">
+    <Position X="10.5" Y="4" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAEgAgAAAAAAAAAAAAAAAIAAAAACQAAAA=</HashCode>
+      <FileName>Driver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HomeWork_1.Client">
+    <Position X="10.5" Y="0.5" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="HomeWork_1.Client.Cargo" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Client.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAAAAAEwAAAAAAAAAA=</HashCode>
+      <FileName>Client.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
