@@ -6,14 +6,6 @@ using System.Threading.Tasks;
 
 namespace HomeWork_2
 {
-    enum AccountType
-    {
-        current,
-        savings,
-        deposit
-    }
-
-
     internal class BankAccount
     {
         //        Создать класс счет в банке с закрытыми полями: номер счета, баланс, тип
@@ -30,14 +22,12 @@ namespace HomeWork_2
         {
             AccountNum = AccountNumGenerator();
             AccountType = _AccountType;
-
         }
         public BankAccount(int money, AccountType _AccountType)
         {
             AccountNum = AccountNumGenerator();
             Balance = money;
             AccountType = _AccountType;
-
         }
         
         public void ShowBalance()
@@ -63,13 +53,12 @@ namespace HomeWork_2
         }
         public void WidthdrawMoney(decimal moneyAmount)
         {
-            
             if (Balance > moneyAmount)
             {
                 Balance -= moneyAmount;
                 Console.WriteLine($"Выданы средства, {moneyAmount} у.е.");
             }
-            else if (Balance < moneyAmount)
+            else//if (Balance < moneyAmount)
             {
                 OverDraft = true;
                 Balance -= moneyAmount;
@@ -80,7 +69,6 @@ namespace HomeWork_2
         {
             Random random = new();
             return AccountNum = $"{random.Next(1000, 5001)}-{random.Next(10001, 40001)}-{random.Next(5001, 10001)}";
-
         }
 
 
