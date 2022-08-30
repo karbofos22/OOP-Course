@@ -8,10 +8,8 @@ namespace HomeWork_2
 {
     internal class BankAccount
     {
-        //        Создать класс счет в банке с закрытыми полями: номер счета, баланс, тип
-        //банковского счета(использовать перечислимый тип). Предусмотреть методы для
-        //доступа к данным – заполнения и чтения.Создать объект класса, заполнить его
-        //поля и вывести информацию об объекте класса на печать
+        //В класс банковский счет, созданный в упражнениях, добавить метод, который переводит деньги с одного счета на другой.
+        //У метода два параметра: ссылка на объект класса банковский счет откуда снимаются деньги, второй параметр – сумма.
 
         private string AccountNum { get; set; }
         private decimal Balance{get; set;}
@@ -70,10 +68,19 @@ namespace HomeWork_2
             Random random = new();
             return AccountNum = $"{random.Next(1000, 5001)}-{random.Next(10001, 40001)}-{random.Next(5001, 10001)}";
         }
-
-
-
-
-
+        public void TransferMoney(BankAccount anotherAccount, decimal moneyAmount)
+        {
+            
+            if (anotherAccount.Balance < moneyAmount)
+            {
+                Console.WriteLine("Невозможно сделать транзакцию, недостаточно средств");
+            }
+            else
+            {
+                anotherAccount.Balance -= moneyAmount;
+                Balance += moneyAmount;
+                Console.WriteLine($"На счет зачислены средства в размере {moneyAmount}, баланс {Balance}");
+            }
+        }
     }
 }

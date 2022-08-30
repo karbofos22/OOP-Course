@@ -10,6 +10,10 @@ namespace HomeWork_2
             mrJonesAccount.ShowAccountInfo();
             mrJonesAccount.ShowBalance();
 
+            BankAccount mrSmithAccount = new(AccountType.savings);
+            mrSmithAccount.ShowAccountInfo();
+            mrSmithAccount.ShowBalance();
+
             Console.WriteLine();
 
             mrJonesAccount.WidthdrawMoney(1000);
@@ -17,16 +21,14 @@ namespace HomeWork_2
 
             mrJonesAccount.WidthdrawMoney(5000);
             mrJonesAccount.WidthdrawMoney(3000);
-            mrJonesAccount.AddMoney(2000);
+            mrJonesAccount.AddMoney(8000);
             mrJonesAccount.ShowBalance();
 
             Console.WriteLine();
 
-            BankAccount mrSmithAccount = new(AccountType.savings);
-            mrSmithAccount.ShowAccountInfo();
+            mrSmithAccount.TransferMoney(mrJonesAccount, 2000);
             mrSmithAccount.ShowBalance();
-
-
+            mrJonesAccount.ShowBalance();
         }
     }
 }
