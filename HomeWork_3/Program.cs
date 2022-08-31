@@ -32,22 +32,20 @@ namespace HomeWork_3
                            "Клептунов Андрей Андреевич & klepaka@yandex.ru\n" +
                            "Синицкая-Фемиди Зося Викторовна & SinFem@yandex.ru\n" +
                            "Петриков Валентин & PV@mail.ru\n" +
-                           "Мухатдинов Хассан Оглы & Muhatdinov@mail.ru";
+                           "Мухатдинов Хассан Оглы & Muhatdinov@mail.ru\n" +
+                           "Иванов Андрей Сергеевич & ivanovandrey@gmail.com";
 
             Console.WriteLine(users);
             Console.WriteLine();
             RipEmailsFromFile(ref users);
            
             Console.WriteLine(users);
-
-
         }
         static string StringReverse(string anyString)
         {
             Stack<char> stack = new();
             string result = "";
 
-            anyString.ToCharArray();
             foreach (char c in anyString)
             {
                 stack.Push(c);
@@ -62,7 +60,7 @@ namespace HomeWork_3
         {
             string cleanedString = "";
 
-            string[] spearator = { "&" + 1, "\n" };
+            string[] spearator = { "&" + 1, "\n"};
             string[] result = file.Split(spearator, file.Length, StringSplitOptions.RemoveEmptyEntries);
 
             foreach (string item in result)
@@ -70,15 +68,17 @@ namespace HomeWork_3
                 if (item.Contains(".ru"))
                 {
                     int start = item.IndexOf('&');
-                    int end = item.IndexOf(".ru");
-                    cleanedString += item.Substring(start + 2, end - start + 1) + Environment.NewLine;
+                    int end = item.IndexOf(".ru") + 1;
+                    cleanedString += item.Substring(start + 2, end - start) + Environment.NewLine;
+                }
+                else if (item.Contains(".com"))
+                {
+                    int start = item.IndexOf('&');
+                    int end = item.IndexOf(".com") + 2;
+                    cleanedString += item.Substring(start + 2, end - start) + Environment.NewLine;
                 }
                 file = cleanedString;
             }
-
-            
-
-
         }
     }
 }
