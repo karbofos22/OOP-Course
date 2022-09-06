@@ -15,47 +15,49 @@ namespace HomeWork_4
         //    Для этого в классе предусмотреть статическое поле, которое бы хранило последний использованный номер здания, 
         //    и предусмотреть метод, который увеличивал бы значение этого поля.
 
-        readonly int buildingStartingNum = 0;
+        //Constanses
+            //Minimum building height
+        const int minHeigth = 10;
+            //Floors const values
+        const int minFloorsCount = 1;
+        const int minFloorHeight = 3;
+        const int maxFloorHeight = 5;
+        //Total flats const values
+        const int minTotalFlats = 50;
+        //Flats at floor const values
+        const int minFlatsAtFloor = 3;
+        const int maxFlatsAtFloor = 8;
+
+        readonly int buildingStartingNum = 1;
         private static int TotalBuildingsNum { get; set; }
-        
         private int Num { get; set; }
-        readonly int minHeigth = 7;
-        readonly double minFloorHeight = 2.5f;
+        
         private int TotalHeight { get; set; }
         private int FloorsCount { get; set; }
         private int FlatsCount { get; set; }
+        private int FlatsAtFloor { get; set; }
+        private int CeilingHeight { get; set; }
         private int EntrancesCount { get; set; }
-        private List<int> Floor { get; set; }
-        private List<int> Flat { get; set; }
-        private List<int> Entrance { get; set; }
 
-
-        public Building(int height, int floorsCount, int flatsCount, int entrancesCount)
+        public Building(int height, int floorsCount, int flatsCount)
         {
             AssignBuildingNum();
             HeightSetup(height);
-            
+            FloorsSetup(floorsCount);
+            FlatsSetup(flatsCount);
+            EntrancesSetup();
+            FlatsAtFloorSetup();
+            CeilingHeightSetup();
         }
-        public void ShowInfo()
+        public virtual void ShowInfo()
         {
             Console.WriteLine("Параметры здания:\n" +
                              $"Высота: {TotalHeight}\n" +
                              $"Кол-во этажей: {FloorsCount}\n" +
-                             $"Кол-во подъездов: {EntrancesCount}\n");
-        }
-        private double FloorsSetup(int floorsCount)
-        {
-            if (TotalHeight == minHeigth)
-            {
-                return FloorsCount = 1;
-            }
-            else
-            {
-                if (true)
-                {
-
-                }
-            }
+                             $"Кол-во подъездов: {EntrancesCount}({FlatsCount / EntrancesCount} квартир(ы) в подъезде)\n" +
+                             $"Кол-во квартир: {FlatsCount}({FlatsAtFloor} квартир(ы) на этаж)\n" +
+                             $"Высота потолка в квартире: {CeilingHeight}\n" +
+                             $"Порядковый номер дома: {Num}\n");
         }
         int HeightSetup(int height)
         {
@@ -68,12 +70,53 @@ namespace HomeWork_4
                 return TotalHeight = height;
             }
         }
+        int FloorsSetup(int floorsCount)
+        {
+            if (floorsCount <= 0)
+            {
+                return FloorsCount = minFloorsCount;
+            }
+            else if(TotalHeight / floorsCount <= minFloorHeight)
+            {
+                return FloorsCount = TotalHeight / minFloorHeight;
+            }
+            else if(TotalHeight / floorsCount >= maxFloorHeight)
+            {
+                return FloorsCount = TotalHeight / maxFloorHeight;
+            }
+            else
+            {
+                return FloorsCount = floorsCount;
+            }
+        }
+        int FlatsSetup(int flatsCount)
+        {
+            return flatsCount <= 15 ? FlatsCount = minTotalFlats : FlatsCount = flatsCount;
+        }
+        void EntrancesSetup()
+        {
+                EntrancesCount = FlatsCount / minFlatsAtFloor / FloorsCount;
+
+            if (EntrancesCount > 10)
+            {
+                EntrancesCount = FlatsCount / FloorsCount / maxFlatsAtFloor;
+            }
+        }
+
+        int FlatsAtFloorSetup()
+        {
+            return FlatsAtFloor = FlatsCount / EntrancesCount / FloorsCount;
+        }
+        int CeilingHeightSetup()
+        {
+            return CeilingHeight = TotalHeight / FloorsCount;
+        }
         void AssignBuildingNum()
         {
             if (TotalBuildingsNum == 0)
             {
                 Num = buildingStartingNum;
-                TotalBuildingsNum++;
+                TotalBuildingsNum += 2;
             }
             else
             {
