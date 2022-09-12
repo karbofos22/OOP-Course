@@ -8,8 +8,10 @@ namespace HomeWork_2
 {
     internal class BankAccount
     {
-        //В класс банковский счет, созданный в упражнениях, добавить метод, который переводит деньги с одного счета на другой.
-        //У метода два параметра: ссылка на объект класса банковский счет откуда снимаются деньги, второй параметр – сумма.
+        //1.  Для класса банковский счет переопределить операторы == и != для сравнения информации в двух счетах.
+        //    Переопределить метод Equals аналогично оператору ==, не забыть переопределить метод GetHashCode(). 
+        //    Переопределить методToString() для печати информации о счете. 
+        //    Протестировать функционирование переопределенных методов и операторов на простом примере.
 
         private string AccountNum { get; set; }
         private decimal Balance{get; set;}
@@ -32,11 +34,11 @@ namespace HomeWork_2
         {
             Console.WriteLine($"Balance: {Balance} у.е.");
         }
-        public void ShowAccountInfo()
-        {
-            Console.WriteLine($"Account number: {AccountNum}\n" +
-                              $"Account type: {AccountType}");
-        }
+        //public void ShowAccountInfo()
+        //{
+        //    Console.WriteLine($"Account number: {AccountNum}\n" +
+        //                      $"Account type: {AccountType}");
+        //}
         public void AddMoney(decimal moneyAmount)
         {
             Balance += moneyAmount;
@@ -81,6 +83,41 @@ namespace HomeWork_2
                 Balance += moneyAmount;
                 Console.WriteLine($"На счет зачислены средства в размере {moneyAmount}, баланс {Balance}");
             }
+        }
+        public static bool operator ==(BankAccount account1, BankAccount account2)
+        {
+            if (account1.AccountNum == account2.AccountNum)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public static bool operator !=(BankAccount account1, BankAccount account2)
+        {
+            return !(account1 == account2);
+        }
+        public override bool Equals(object obj)
+        {
+            if (!(obj is BankAccount))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        public override string ToString()
+        {
+            return $"Account number: {AccountNum}\n" +
+                   $"Account type: {AccountType}";
+        }
+        public override int GetHashCode()
+        {
+            return AccountNum.GetHashCode();
         }
     }
 }
